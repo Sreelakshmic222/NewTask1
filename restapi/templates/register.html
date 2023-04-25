@@ -84,7 +84,7 @@ button{
 </head>
 <body style="background:url('https://rurutek.com/jio/assets/img/login-animate.gif')no-repeat;background-size:cover;">
 {% block content %}
-  <form method="post" action="{%url 'regi'%}">
+  <form method="post"  action="{% url 'logg' %}">
       <h3 style="color:blue;">Register</h3>
     {% csrf_token %}
     <div>
@@ -100,6 +100,6 @@ button{
       <input type="password" id="password" name="password" placeholder="Enter Password">
     </div>
     <button type="submit">Register</button>
-      <h6 style="color:red;">Already have account?<a href="{% url 'log' %}" style="color:blue;">Click Me</a></h6>
+      <h6 style="color:red;">Already have account?<a href="{% url 'logg' %}" style="color:blue;">Click Me</a></h6>
   </form>
 {% endblock %}

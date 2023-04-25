@@ -8,6 +8,11 @@ from rest_framework_jwt.settings import api_settings
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 class RegisterAPIView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'register.html'
+    def get(self, request):
+        # Your view logic here
+        return Response({'message':'homepage'})
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
@@ -30,7 +35,15 @@ class RegisterAPIView(APIView):
         return Response({'token': token}, status=status.HTTP_201_CREATED)
 
 
+
+
 class LoginAPIView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'login.html'
+    def get(self, request):
+        # Your view logic here
+        return Response({'message':'homepage'})
+
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
@@ -67,25 +80,25 @@ class LoginAPIView(APIView):
 #         # render login form template
 #         return render(request, 'login.html')
 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # redirect to success page
-    else:
-        form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+# def register(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             # redirect to success page
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'register.html', {'form': form})
 
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
-        if form.is_valid():
-            # authenticate user and redirect to success page
-            pass
-    else:
-        form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+# def login(request):
+#     if request.method == 'POST':
+#         form = AuthenticationForm(request, request.POST)
+#         if form.is_valid():
+#             # authenticate user and redirect to success page
+#             pass
+#     else:
+#         form = AuthenticationForm()
+#     return render(request, 'login.html', {'form': form})
 
 class HomePageView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -94,3 +107,12 @@ class HomePageView(APIView):
     def get(self, request):
         # Your view logic here
         return Response({'message':'homepage'})
+
+class IndexPageView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'index.html'
+
+    def post(self, request):
+        the_user = request.user
+        # Your view logic here
+        return Response({'Hai':'the_user'})
