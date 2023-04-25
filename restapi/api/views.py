@@ -115,4 +115,9 @@ class IndexPageView(APIView):
     def post(self, request):
         the_user = request.user
         # Your view logic here
-        return Response({'Hai':'the_user'})
+
+        # Create a greeting message that includes the user's name
+        greeting = f'Hello, {the_user.username}!'
+
+        # Update the Response data with the greeting message
+        return Response({'greeting': greeting})

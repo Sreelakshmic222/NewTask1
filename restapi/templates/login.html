@@ -85,7 +85,7 @@ button{
 </head>
 <body style="background:url('https://rurutek.com/jio/assets/img/login-animate.gif')no-repeat;background-size:cover;">
 {% block content %}
-  <form method="post" action="{% url 'greet' %}">
+  <form method="post" action="{% url 'greeting' %}">
       <h3 style="color:blue;">Login</h3>
     {% csrf_token %}
     <div>
